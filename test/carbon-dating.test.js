@@ -14,7 +14,7 @@ describe('Carbon dating', () => {
       expect(dateSample).exist;
       expect(dateSample).to.be.instanceOf(Function);
     });
-  });
+  }); 
 
   //Specific requirements
 
