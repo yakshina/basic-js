@@ -1,42 +1,34 @@
 const CustomError = require("../extensions/custom-error");
 
 const chainMaker = {
+  arr: [],
   getLength() {
-    
-    
+    return this.arr.length;
   },
   addLink(value) {
-    let v1 = '( ' + value + ' )';
+    this.arr.push('( ' + value + ' )');
+    return this;
     
-        let v = v1;
-          
-           let x = { addLink(value) {
-            
-            if (value != undefined){
-                let v2 = '~~( ' + value + ' )' ; 
-                	let vv = v + v2;
-                		return vv;
-                        }
-                       }
-                       
-                    }
-        // document.write(Object.keys(x));
-            if (Object.keys(x) != 'addLink'){
-            	return v;
-               }
-             
-             return x;
   },
   removeLink(position) {
-    delete chainMaker[position];
-    return chainMaker;
+    if(!isNaN(position)){
+      this.arr.splice(position-1, 1);
+    }
+    else {
+      this.arr = [];
+      throw new Error("Something went wrong!");
+      
+    }
+    return this;
   },
   reverseChain() {
-    return chainMaker.reverse();
- 
+    this.arr.reverse();
+    return this;
   },
   finishChain() {
-    
+    let value =  this.arr.join('~~');
+    this.arr = [];
+    return value;
   }
 };
 
