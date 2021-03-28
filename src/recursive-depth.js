@@ -8,9 +8,7 @@ module.exports = class DepthCalculator {
       let count = 0;
       let max = 0;
       arr.forEach((item) => {
-
         count = this.calculateDepth(item);
-
         if (count > max) {
           max = count;
           count = 0;
@@ -18,13 +16,11 @@ module.exports = class DepthCalculator {
       });
 
       return max + 1;
-
     }
 
     else {
       return 0;
     }
-    
-    
+      
   }
   };
