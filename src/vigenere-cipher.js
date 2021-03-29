@@ -2,7 +2,22 @@ const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
 
+  constructor(value) {
+    if(value === false) {
+      this.value = value;
+    } else {
+      this.value = !value;
+    }
+      
+    
+    }
+  
+
   encrypt(message, key) {
+
+    if(message == undefined || key === undefined) {
+      throw new Error();
+    }
 
     let m = message.toUpperCase().split("");
     let k = key.toUpperCase().split("");
@@ -59,12 +74,22 @@ class VigenereCipheringMachine {
 
       
     }
-    return(enc);
+    if (this.value) {
+      return enc;
+    }
+    else {
+      return enc.split('').reverse().join('');
+    }
+    //return(enc);
 
 
 }    
   decrypt(message, key) {
     
+    if(message == undefined || key === undefined) {
+      throw new Error();
+    }
+
     let m = message.toUpperCase().split("");
     let k = key.toUpperCase().split("");
     let a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -104,23 +129,26 @@ class VigenereCipheringMachine {
     let n = newk.join("").toUpperCase();
     let x, y;
     m = m.join("");
+
       for(let i = 0; i < m.length; i++) {
       if(all.indexOf(m[i]) != -1) {
-        dec += m[i];
+        dec += n[i];
       }
       else {
-      
       	x = a.indexOf(n[i]);
-      	y = vig[x].indexOf(m[i]);
-       if (x != -1 && y != -1) {
+      	y = vig[x].indexOf(m[i]);      
        	dec += a[y];
-       }
-       
        }
 
       
     }
-    return(dec);
+    if (this.value) {
+      return dec;
+    }
+    else {
+      return dec.split('').reverse().join('');
+    }
+    //return(dec);
   }
 }
 
