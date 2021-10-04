@@ -21,8 +21,41 @@ import { NotImplementedError } from '../extensions/index.js';
  *   '.ru.yandex.music': 1,
  * }
  *
+ * 
+npm run test -- test/st-dns-stats.test.js
+
  */
-export default function getDNSStats(/* domains */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getDNSStats(domains) {
+  let key = '';
+  let dnsObj = new Object();
+  let count = 0;
+  //создаю объект
+  for(let j = 0; j < domains.length; j++){
+    let dns = domains[j].split('.');
+  
+  
+  for(let i=dns.length-1; i >-1 ; i--){
+    
+    for(let c=0; c< domains.length; c++) {
+      if(domains[c].indexOf(dns[i])>-1){
+       // console.log(dns[i]);
+      count++;
+    }
+      else count = 0;
+    }
+   
+    
+    dns[i] = "."+dns[i];
+    key +=dns[i];
+    dnsObj[key] = count;
+    count = 0;
+  }
+    key ="";
+    
+  }
+  
+  //поиск 
+
+ 
+  return dnsObj;
 }

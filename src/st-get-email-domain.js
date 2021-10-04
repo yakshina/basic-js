@@ -9,8 +9,17 @@ import { NotImplementedError } from '../extensions/index.js';
  * @example
  * For the input 'prettyandsimple@example.com', the output should be 'example.com'
  *
+ * 
+npm run test -- test/st-get-email-domain.test.js
+
  */
-export default function getEmailDomain(/* email */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getEmailDomain(email) {
+  let index = email.indexOf('@');
+  let domain = email.substring(index+1, email.string);
+  if(domain.indexOf('@')===-1){
+    return domain;
+  }
+  else {
+    return getEmailDomain(domain);
+  }
 }

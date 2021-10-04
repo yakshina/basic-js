@@ -10,8 +10,20 @@ import { NotImplementedError } from '../extensions/index.js';
  * @example
  * For n = 152, the output should be 52
  *
+ * 
+npm run test -- test/st-delete-digit.test.js
+
  */
-export default function deleteDigit(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+ export default function deleteDigit(n) {
+ 
+  let number = (n+'').split('');
+  let min = number[0]
+  number.forEach((el)=>{
+    if(el*1 < min*1){
+      min = el;
+    }
+  })
+  delete number[number.indexOf(min)];
+  let result = number.join('');
+  return result*1;
 }

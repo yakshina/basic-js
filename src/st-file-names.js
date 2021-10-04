@@ -14,8 +14,26 @@ import { NotImplementedError } from '../extensions/index.js';
  * For input ["file", "file", "image", "file(1)", "file"],
  * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
  *
+ * 
+npm run test -- test/st-file-names.test.js
+
  */
-export default function renameFiles(/* names */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function renameFiles(names) {
+  function indexof(arr, count){
+    arr.forEach((el, index)=>{
+    if(arr.indexOf(el, index+1)!=-1){
+       names[names.indexOf(el, index+1)] += '(' + count + ')';
+      if(arr.indexOf(el, index+1)==-1){
+        count++;
+        indexof(arr, count);
+      }
+    }
+    })
+    return arr;
+  }
+  
+  let count = 1;
+  return indexof(names, count);
+
+
 }

@@ -12,9 +12,15 @@ import { NotImplementedError } from '../extensions/index.js';
  * @example
  * 
  * calculateHanoi(9, 4308) => { turns: 511, seconds: 427 }
- *
+npm run test -- test/hanoi-tower.test.js
  */
-export default function calculateHanoi(/* disksNumber, turnsSpeed */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+export default function calculateHanoi(disksNumber, turnsSpeed) {
+  let turns = 2**disksNumber-1;
+  let seconds = Math.floor(turns/turnsSpeed*3600);
+
+  let play = new Object({
+    'seconds': seconds,
+    'turns': turns
+    
+  });
+return play;}
